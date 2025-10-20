@@ -21,9 +21,9 @@ const HomeScreen: React.FC = () => {
 						<Text className="text-gray-100 text-lg mb-8 text-center">Ready to watch? Enter your email to create or restart your membership.</Text>
 						<Link
 							href="/RegisterScreen"
-							className="bg-red-600 hover:bg-red-700 px-6 py-4 rounded text-lg font-semibold flex items-center justify-center h-12 mt-4"
+							className="bg-red-600 hover:bg-red-700 px-6 py-4 rounded  font-semibold  h-12 mt-4 text-white pb-2 pt-3"
 						>
-							<Text className="text-white font-semibold text-lg">Get Started</Text>
+							Get Started
 						</Link>
 					</View>
 				)}

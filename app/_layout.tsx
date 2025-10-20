@@ -12,6 +12,8 @@ export default function RootLayout() {
         headerTitle: () => <NetflixHeader />, // Custom logo
         headerTitleAlign: 'center',
         headerShadowVisible: false,
+        headerBackVisible: false,
+        animation: 'slide_from_right',
       }}
     >
       <Stack.Screen name="index" options={{ title: 'Home' }} />
