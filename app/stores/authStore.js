@@ -1,6 +1,6 @@
 
-import Constants from 'expo-constants';
 import { create } from 'zustand';
+import ENV from '../config/env';
 import { userApi } from '../services/api/user';
 import { crossStorage } from '../utils/crossStorage';
 
@@ -25,8 +25,7 @@ export const useAuthStore = create((set, get) => ({
   async login(email, password) {
     try {
       set({ loading: true });
-      const apiUrl = Constants.expoConfig?.extra?.VITE_BACKEND_API_URL || process.env.VITE_BACKEND_API_URL;
-      const res = await fetch(`${apiUrl}/login`, {
+      const res = await fetch(`${ENV.BACKEND_API_URL}/login`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -56,8 +55,7 @@ export const useAuthStore = create((set, get) => ({
   async register(userData) {
     try {
       set({ loading: true });
-      const apiUrl = Constants.expoConfig?.extra?.VITE_BACKEND_API_URL || process.env.VITE_BACKEND_API_URL;
-      const res = await fetch(`${apiUrl}/register`, {
+      const res = await fetch(`${ENV.BACKEND_API_URL}/register`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -87,8 +85,7 @@ export const useAuthStore = create((set, get) => ({
     set({ user: null, isAuthenticated: false });
     if (token) {
       try {
-        const apiUrl = Constants.expoConfig?.extra?.VITE_BACKEND_API_URL || process.env.VITE_BACKEND_API_URL;
-        await fetch(`${apiUrl}/logout`, {
+        await fetch(`${ENV.BACKEND_API_URL}/logout`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json', 'Accept': 'application/json', 'Authorization': `Bearer ${token}` },
         });

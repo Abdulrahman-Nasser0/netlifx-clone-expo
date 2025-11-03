@@ -7,6 +7,9 @@
     "scheme": "netflixcloneexpo",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
+    "extra": {
+      "BACKEND_API_URL": "https://netflix-clone-production-4f77.up.railway.app/api"
+    },
     "ios": {
       "supportsTablet": true
     },

@@ -1,5 +1,6 @@
-const API_KEY = "44090856cfc33566c8bb504be8ee1fcd";
-const BASE_URL = "https://api.themoviedb.org/3";
+import ENV from '../../config/env';
+
+const API_KEY = ENV.TMDB_API_KEY;
 
 export const endpoints = {
   // Movies

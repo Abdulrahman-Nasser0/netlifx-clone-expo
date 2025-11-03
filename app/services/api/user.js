@@ -1,22 +1,29 @@
-const API_URL = "https://netflix-clone-production-4f77.up.railway.app/api";
+import ENV from '../../config/env';
+import { crossStorage } from '../../utils/crossStorage';
 
-const authHeaders = () => ({
-  'Content-Type': 'application/json',
-  'Accept': 'application/json',
-  'Authorization': `Bearer ${localStorage.getItem('auth_token')}`,
-});
+const API_URL = ENV.BACKEND_API_URL;
+
+const authHeaders = async () => {
+  const token = await crossStorage.getItem('auth_token');
+  return {
+    'Content-Type': 'application/json',
+    'Accept': 'application/json',
+    'Authorization': `Bearer ${token}`,
+  };
+};
 
 export const userApi = {
   async getCurrent() {
-    const res = await fetch(`${API_URL}/user`, { headers: authHeaders(), credentials: 'include' });
+    const headers = await authHeaders();
+    const res = await fetch(`${API_URL}/user`, { headers });
     if (!res.ok) throw new Error(`GET /user failed: ${res.status}`);
     return res.json();
   },
   async updateProfile(payload) {
+    const headers = await authHeaders();
     const res = await fetch(`${API_URL}/userUpdate`, {
       method: 'PUT',
-      headers: authHeaders(),
-      credentials: 'include',
+      headers,
       body: JSON.stringify(payload),
     });
     if (!res.ok) {
