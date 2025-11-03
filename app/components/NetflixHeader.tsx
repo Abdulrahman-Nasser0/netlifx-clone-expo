@@ -28,10 +28,10 @@ const NetflixHeader: React.FC = () => {
           </>
         ) : (
           <>
-            <Link href={'/LoginScreen'} className='text-white bg-red-600 py-1.5 px-3 rounded'>
+            <Link href={'/screens/LoginScreen'} className='text-white bg-red-600 py-1.5 px-3 rounded'>
               <Text className="text-white">Login</Text>
             </Link>
-            <Link href={'/RegisterScreen'} className='text-white py-1.5 px-3 rounded'>
+            <Link href={'/screens/RegisterScreen'} className='text-white py-1.5 px-3 rounded'>
               <Text className="text-white">Sign Up</Text>
             </Link>
           </>

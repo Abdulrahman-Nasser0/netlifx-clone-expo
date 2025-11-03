@@ -25,6 +25,29 @@ export const useAuthStore = create((set, get) => ({
   async login(email, password) {
     try {
       set({ loading: true });
+      
+      // 🔧 MOCK AUTHENTICATION MODE
+      if (ENV.USE_MOCK_AUTH) {
+        console.log('🎭 Mock Login - Bypassing backend');
+        await new Promise(resolve => setTimeout(resolve, 500)); // Simulate network delay
+        
+        const mockUser = {
+          id: 1,
+          name: 'Mock User',
+          email: email,
+          created_at: new Date().toISOString(),
+        };
+        const mockToken = 'mock-jwt-token-' + Date.now();
+        
+        await crossStorage.setItem('auth_token', mockToken);
+        await crossStorage.setItem('user', JSON.stringify(mockUser));
+        set({ user: mockUser, isAuthenticated: true });
+        
+        console.log('✅ Mock Login Successful:', mockUser);
+        return { success: true };
+      }
+      
+      // Real backend authentication
       const res = await fetch(`${ENV.BACKEND_API_URL}/login`, {
         method: 'POST',
         headers: {
@@ -55,6 +78,17 @@ export const useAuthStore = create((set, get) => ({
   async register(userData) {
     try {
       set({ loading: true });
+      
+      // 🔧 MOCK AUTHENTICATION MODE
+      if (ENV.USE_MOCK_AUTH) {
+        console.log('🎭 Mock Register - Bypassing backend');
+        await new Promise(resolve => setTimeout(resolve, 500)); // Simulate network delay
+        
+        console.log('✅ Mock Registration Successful');
+        return { success: true };
+      }
+      
+      // Real backend registration
       const res = await fetch(`${ENV.BACKEND_API_URL}/register`, {
         method: 'POST',
         headers: {
@@ -83,6 +117,14 @@ export const useAuthStore = create((set, get) => ({
   await crossStorage.removeItem('auth_token');
   await crossStorage.removeItem('user');
     set({ user: null, isAuthenticated: false });
+    
+    // 🔧 MOCK AUTHENTICATION MODE
+    if (ENV.USE_MOCK_AUTH) {
+      console.log('🎭 Mock Logout - No backend call');
+      return;
+    }
+    
+    // Real backend logout
     if (token) {
       try {
         await fetch(`${ENV.BACKEND_API_URL}/logout`, {
@@ -98,6 +140,22 @@ export const useAuthStore = create((set, get) => ({
   async updateUser(updates) {
   const token = await crossStorage.getItem('auth_token');
     if (!token) return { success: false, error: 'Not authenticated' };
+    
+    // 🔧 MOCK AUTHENTICATION MODE
+    if (ENV.USE_MOCK_AUTH) {
+      console.log('🎭 Mock Update User - Bypassing backend');
+      await new Promise(resolve => setTimeout(resolve, 300)); // Simulate network delay
+      
+      const currentUser = get().user;
+      const updated = { ...currentUser, ...updates };
+      await crossStorage.setItem('user', JSON.stringify(updated));
+      set({ user: updated });
+      
+      console.log('✅ Mock Update Successful:', updated);
+      return { success: true, user: updated };
+    }
+    
+    // Real backend update
     try {
       const data = await userApi.updateProfile(updates);
       const updated = data.User || data.user || data;
@@ -112,6 +170,18 @@ export const useAuthStore = create((set, get) => ({
   async refreshUser() {
   const token = await crossStorage.getItem('auth_token');
     if (!token) return { success: false, error: 'Not authenticated' };
+    
+    // 🔧 MOCK AUTHENTICATION MODE
+    if (ENV.USE_MOCK_AUTH) {
+      console.log('🎭 Mock Refresh User - Using stored data');
+      const currentUser = get().user;
+      if (currentUser) {
+        return { success: true, user: currentUser };
+      }
+      return { success: false, error: 'No user data found' };
+    }
+    
+    // Real backend refresh
     try {
       const data = await userApi.getCurrent();
       const updated = data.User || data.user || data;

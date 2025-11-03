@@ -12,7 +12,7 @@ export const useAuthGuard = () => {
 
   useEffect(() => {
     if (!loading && !isAuthenticated) {
-      router.replace('/LoginScreen');
+      router.replace('/screens/LoginScreen');
     }
   }, [isAuthenticated, loading, router]);
 

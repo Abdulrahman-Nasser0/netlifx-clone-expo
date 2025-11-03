@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { ActivityIndicator, View } from 'react-native';
-import HomeScreen from './HomeScreen';
+import HomeScreen from './screens/HomeScreen';
 import { useAuthStore } from './stores/authStore';
 
 export default function Index() {

@@ -16,7 +16,7 @@ const AccountScreen = () => {
 
   useEffect(() => {
     if (!isAuthenticated && !loading) {
-      router.replace('/LoginScreen');
+      router.replace('/screens/LoginScreen');
     }
     if (user) {
       setName(user.name || '');

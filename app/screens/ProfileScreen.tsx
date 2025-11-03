@@ -9,7 +9,7 @@ const ProfileScreen = () => {
 
   useEffect(() => {
     if (!isAuthenticated && !loading) {
-      router.replace('/LoginScreen');
+      router.replace('/screens/LoginScreen');
     }
   }, [isAuthenticated, loading, router]);
 

@@ -2,7 +2,7 @@
 import { Link, useRouter } from 'expo-router';
 import React, { useState } from 'react';
 import { ActivityIndicator, Text, TextInput, TouchableOpacity, View } from 'react-native';
-import { useAuth } from './stores/authStore';
+import { useAuth } from '../stores/authStore';
 
 const LoginScreen = () => {
   const router = useRouter();
@@ -50,7 +50,7 @@ const LoginScreen = () => {
       >
         {loading ? <ActivityIndicator color="#fff" /> : <Text style={{ color: 'white', fontWeight: 'bold', fontSize: 16 }}>Sign In</Text>}
       </TouchableOpacity>
-      <Link href={"/RegisterScreen"}>
+      <Link href={"/screens/RegisterScreen"}>
         <Text style={{ color: '#e50914' }}>Dont have an account? Sign Up</Text>
       </Link>
     </View>

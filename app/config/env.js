@@ -42,6 +42,11 @@ export const ENV = {
     ''
   ),
   
+  // 🔧 MOCK AUTHENTICATION MODE
+  // Set to true to bypass backend and use mock authentication
+  // Set to false to use real backend authentication
+  USE_MOCK_AUTH: getEnvVar('USE_MOCK_AUTH', 'true') === 'true',
+  
   // App Configuration
   APP_NAME: 'Netflix Clone',
   APP_VERSION: Constants.expoConfig?.version || '1.0.0',
@@ -57,7 +62,12 @@ if (__DEV__) {
     BACKEND_API_URL: ENV.BACKEND_API_URL,
     TMDB_API_KEY: ENV.TMDB_API_KEY ? '***' + ENV.TMDB_API_KEY.slice(-4) : 'NOT SET',
     APP_VERSION: ENV.APP_VERSION,
+    USE_MOCK_AUTH: ENV.USE_MOCK_AUTH ? '✅ ENABLED (Backend bypassed)' : '❌ DISABLED (Using real backend)',
   });
+  
+  if (ENV.USE_MOCK_AUTH) {
+    console.warn('⚠️  MOCK AUTHENTICATION ENABLED - To use real backend, set USE_MOCK_AUTH to false in app/config/env.js');
+  }
 }
 
 // Default export

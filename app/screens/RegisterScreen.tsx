@@ -2,7 +2,7 @@
 import { Link, useRouter } from 'expo-router';
 import React, { useState } from 'react';
 import { ActivityIndicator, Text, TextInput, TouchableOpacity, View } from 'react-native';
-import { useAuth } from './stores/authStore';
+import { useAuth } from '../stores/authStore';
 
 const RegisterScreen = () => {
   const router = useRouter();
@@ -28,7 +28,7 @@ const RegisterScreen = () => {
     const result = await register({ name, email, password, password_confirmation: passwordConfirmation });
     if (result.success) {
       setSuccess('Registration successful! Please sign in.');
-      setTimeout(() => router.replace('/LoginScreen'), 1200);
+      setTimeout(() => router.replace('/screens/LoginScreen'), 1200);
     } else {
       setError(result.error || 'Registration failed');
     }
@@ -78,7 +78,7 @@ const RegisterScreen = () => {
       >
         {loading ? <ActivityIndicator color="#fff" /> : <Text style={{ color: 'white', fontWeight: 'bold', fontSize: 16 }}>Sign Up</Text>}
       </TouchableOpacity>
-      <Link href={"/LoginScreen"}>
+      <Link href={"/screens/LoginScreen"}>
         <Text style={{ color: '#e50914' }}>Already have an account? Sign In</Text>
       </Link>
     </View>
