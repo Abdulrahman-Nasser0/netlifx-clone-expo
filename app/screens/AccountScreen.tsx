@@ -64,7 +64,7 @@ const AccountScreen = () => {
 
   if (loading) {
     return (
-      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: '#111' }}>
+      <View className="flex-1 justify-center items-center bg-[#111]">
         <ActivityIndicator size="large" color="#e50914" />
       </View>
     );
@@ -75,26 +75,26 @@ const AccountScreen = () => {
   }
 
   return (
-    <ScrollView style={{ flex: 1, backgroundColor: '#111' }}>
-      <View style={{ padding: 24, paddingTop: 80 }}>
-        <Text style={{ color: 'white', fontSize: 32, fontWeight: 'bold', marginBottom: 8 }}>Account Settings</Text>
-        <Text style={{ color: '#888', fontSize: 16, marginBottom: 32 }}>Update your account information</Text>
+    <ScrollView className="flex-1 bg-[#111]">
+      <View className="p-6 pt-20 mt-10">
+        <Text className="text-white text-4xl font-bold mb-2">Account Settings</Text>
+        <Text className="text-gray-400 text-base mb-8">Update your account information</Text>
         
-        <View style={{ backgroundColor: '#222', borderRadius: 12, padding: 20, marginBottom: 20 }}>
-          <Text style={{ color: 'white', fontSize: 20, fontWeight: 'bold', marginBottom: 16 }}>Profile Information</Text>
+        <View className="bg-[#222] rounded-xl p-5 mb-5">
+          <Text className="text-white text-xl font-bold mb-4">Profile Information</Text>
           
-          <Text style={{ color: '#888', fontSize: 14, marginBottom: 4 }}>Name</Text>
+          <Text className="text-gray-400 text-sm mb-1">Name</Text>
           <TextInput
-            style={{ backgroundColor: '#333', color: 'white', padding: 12, borderRadius: 8, marginBottom: 16 }}
+            className="bg-[#333] text-white p-3 rounded-lg mb-4"
             value={name}
             onChangeText={setName}
             placeholder="Your name"
             placeholderTextColor="#666"
           />
           
-          <Text style={{ color: '#888', fontSize: 14, marginBottom: 4 }}>Email</Text>
+          <Text className="text-gray-400 text-sm mb-1">Email</Text>
           <TextInput
-            style={{ backgroundColor: '#333', color: 'white', padding: 12, borderRadius: 8, marginBottom: 16 }}
+            className="bg-[#333] text-white p-3 rounded-lg mb-4"
             value={email}
             onChangeText={setEmail}
             placeholder="your@email.com"
@@ -104,13 +104,13 @@ const AccountScreen = () => {
           />
         </View>
 
-        <View style={{ backgroundColor: '#222', borderRadius: 12, padding: 20, marginBottom: 20 }}>
-          <Text style={{ color: 'white', fontSize: 20, fontWeight: 'bold', marginBottom: 16 }}>Change Password</Text>
-          <Text style={{ color: '#888', fontSize: 14, marginBottom: 12 }}>Leave blank to keep current password</Text>
+        <View className="bg-[#222] rounded-xl p-5 mb-5">
+          <Text className="text-white text-xl font-bold mb-4">Change Password</Text>
+          <Text className="text-gray-400 text-sm mb-3">Leave blank to keep current password</Text>
           
-          <Text style={{ color: '#888', fontSize: 14, marginBottom: 4 }}>Current Password</Text>
+          <Text className="text-gray-400 text-sm mb-1">Current Password</Text>
           <TextInput
-            style={{ backgroundColor: '#333', color: 'white', padding: 12, borderRadius: 8, marginBottom: 16 }}
+            className="bg-[#333] text-white p-3 rounded-lg mb-4"
             value={currentPassword}
             onChangeText={setCurrentPassword}
             placeholder="Current password"
@@ -118,9 +118,9 @@ const AccountScreen = () => {
             secureTextEntry
           />
           
-          <Text style={{ color: '#888', fontSize: 14, marginBottom: 4 }}>New Password</Text>
+          <Text className="text-gray-400 text-sm mb-1">New Password</Text>
           <TextInput
-            style={{ backgroundColor: '#333', color: 'white', padding: 12, borderRadius: 8, marginBottom: 16 }}
+            className="bg-[#333] text-white p-3 rounded-lg mb-4"
             value={newPassword}
             onChangeText={setNewPassword}
             placeholder="New password"
@@ -128,9 +128,9 @@ const AccountScreen = () => {
             secureTextEntry
           />
           
-          <Text style={{ color: '#888', fontSize: 14, marginBottom: 4 }}>Confirm New Password</Text>
+          <Text className="text-gray-400 text-sm mb-1">Confirm New Password</Text>
           <TextInput
-            style={{ backgroundColor: '#333', color: 'white', padding: 12, borderRadius: 8, marginBottom: 16 }}
+            className="bg-[#333] text-white p-3 rounded-lg mb-4"
             value={confirmPassword}
             onChangeText={setConfirmPassword}
             placeholder="Confirm new password"
@@ -139,25 +139,25 @@ const AccountScreen = () => {
           />
         </View>
 
-        {error ? <Text style={{ color: 'red', marginBottom: 16, textAlign: 'center' }}>{error}</Text> : null}
+        {error ? <Text className="text-red-600 mb-4 text-center">{error}</Text> : null}
 
         <TouchableOpacity
           onPress={handleUpdateProfile}
           disabled={updating}
-          style={{ backgroundColor: '#e50914', paddingVertical: 16, paddingHorizontal: 24, borderRadius: 8, marginBottom: 12 }}
+          className="bg-[#e50914] py-4 px-6 rounded-lg mb-3"
         >
           {updating ? (
             <ActivityIndicator color="#fff" />
           ) : (
-            <Text style={{ color: 'white', fontSize: 16, fontWeight: 'bold', textAlign: 'center' }}>Save Changes</Text>
+            <Text className="text-white text-base font-bold text-center">Save Changes</Text>
           )}
         </TouchableOpacity>
 
         <TouchableOpacity
           onPress={() => router.back()}
-          style={{ backgroundColor: '#333', paddingVertical: 16, paddingHorizontal: 24, borderRadius: 8 }}
+          className="bg-[#333] py-4 px-6 rounded-lg"
         >
-          <Text style={{ color: 'white', fontSize: 16, textAlign: 'center' }}>Cancel</Text>
+          <Text className="text-white text-base text-center">Cancel</Text>
         </TouchableOpacity>
       </View>
     </ScrollView>

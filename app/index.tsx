@@ -22,7 +22,7 @@ export default function Index() {
 
   if (isInitializing) {
     return (
-      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: '#111' }}>
+      <View className="flex-1 justify-center items-center bg-[#111]">
         <ActivityIndicator size="large" color="#e50914" />
       </View>
     );

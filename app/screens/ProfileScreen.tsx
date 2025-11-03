@@ -20,7 +20,7 @@ const ProfileScreen = () => {
 
   if (loading) {
     return (
-      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: '#111' }}>
+      <View className="flex-1 justify-center items-center bg-[#111]">
         <ActivityIndicator size="large" color="#e50914" />
       </View>
     );
@@ -31,25 +31,25 @@ const ProfileScreen = () => {
   }
 
   return (
-    <ScrollView style={{ flex: 1, backgroundColor: '#111' }}>
-      <View style={{ padding: 24, paddingTop: 80 }}>
-        <Text style={{ color: 'white', fontSize: 32, fontWeight: 'bold', marginBottom: 32 }}>Profile</Text>
+    <ScrollView className="flex-1 bg-[#111]">
+      <View className="p-6 pt-20 mt-10">
+        <Text className="text-white text-4xl font-bold mb-8">Profile</Text>
         
-        <View style={{ backgroundColor: '#222', borderRadius: 12, padding: 20, marginBottom: 20 }}>
-          <View style={{ marginBottom: 16 }}>
-            <Text style={{ color: '#888', fontSize: 14, marginBottom: 4 }}>Name</Text>
-            <Text style={{ color: 'white', fontSize: 18 }}>{user.name}</Text>
+        <View className="bg-[#222] rounded-xl p-5 mb-5">
+          <View className="mb-4">
+            <Text className="text-gray-400 text-sm mb-1">Name</Text>
+            <Text className="text-white text-lg">{user.name}</Text>
           </View>
           
-          <View style={{ marginBottom: 16 }}>
-            <Text style={{ color: '#888', fontSize: 14, marginBottom: 4 }}>Email</Text>
-            <Text style={{ color: 'white', fontSize: 18 }}>{user.email}</Text>
+          <View className="mb-4">
+            <Text className="text-gray-400 text-sm mb-1">Email</Text>
+            <Text className="text-white text-lg">{user.email}</Text>
           </View>
           
           {user.created_at && (
-            <View style={{ marginBottom: 16 }}>
-              <Text style={{ color: '#888', fontSize: 14, marginBottom: 4 }}>Member Since</Text>
-              <Text style={{ color: 'white', fontSize: 18 }}>
+            <View className="mb-4">
+              <Text className="text-gray-400 text-sm mb-1">Member Since</Text>
+              <Text className="text-white text-lg">
                 {new Date(user.created_at).toLocaleDateString()}
               </Text>
             </View>
@@ -58,16 +58,16 @@ const ProfileScreen = () => {
 
         <TouchableOpacity
           onPress={() => router.push('/screens/AccountScreen')}
-          style={{ backgroundColor: '#333', paddingVertical: 16, paddingHorizontal: 24, borderRadius: 8, marginBottom: 12 }}
+          className="bg-[#333] py-4 px-6 rounded-lg mb-3"
         >
-          <Text style={{ color: 'white', fontSize: 16, textAlign: 'center' }}>Account Settings</Text>
+          <Text className="text-white text-base text-center">Account Settings</Text>
         </TouchableOpacity>
 
         <TouchableOpacity
           onPress={handleLogout}
-          style={{ backgroundColor: '#e50914', paddingVertical: 16, paddingHorizontal: 24, borderRadius: 8 }}
+          className="bg-[#e50914] py-4 px-6 rounded-lg"
         >
-          <Text style={{ color: 'white', fontSize: 16, fontWeight: 'bold', textAlign: 'center' }}>Sign Out</Text>
+          <Text className="text-white text-base font-bold text-center">Sign Out</Text>
         </TouchableOpacity>
       </View>
     </ScrollView>

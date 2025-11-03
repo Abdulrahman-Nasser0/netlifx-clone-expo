@@ -22,11 +22,10 @@ const LoginScreen = () => {
   };
 
   return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: '#111', padding: 24 }}>
-      
-      <Text style={{ color: 'white', fontSize: 28, fontWeight: 'bold', marginBottom: 24 }}>Sign In</Text>
+    <View className="flex-1 justify-center items-center bg-[#111] p-6">
+      <Text className="text-white text-3xl font-bold mb-6">Sign In</Text>
       <TextInput
-        style={{ backgroundColor: '#222', color: 'white', width: '100%', maxWidth: 320, padding: 12, borderRadius: 8, marginBottom: 12 }}
+        className="bg-[#222] text-white w-full max-w-[320px] p-3 rounded-lg mb-3"
         placeholder="Email"
         placeholderTextColor="#888"
         autoCapitalize="none"
@@ -35,23 +34,23 @@ const LoginScreen = () => {
         onChangeText={setEmail}
       />
       <TextInput
-        style={{ backgroundColor: '#222', color: 'white', width: '100%', maxWidth: 320, padding: 12, borderRadius: 8, marginBottom: 12 }}
+        className="bg-[#222] text-white w-full max-w-[320px] p-3 rounded-lg mb-3"
         placeholder="Password"
         placeholderTextColor="#888"
         secureTextEntry
         value={password}
         onChangeText={setPassword}
       />
-      {error ? <Text style={{ color: 'red', marginBottom: 12 }}>{error}</Text> : null}
+      {error ? <Text className="text-red-600 mb-3">{error}</Text> : null}
       <TouchableOpacity
         onPress={handleLogin}
-        style={{ backgroundColor: '#e50914', paddingVertical: 12, paddingHorizontal: 32, borderRadius: 8, marginBottom: 16, width: '100%', maxWidth: 320, alignItems: 'center' }}
+        className="bg-[#e50914] py-3 px-8 rounded-lg mb-4 w-full max-w-[320px] items-center"
         disabled={loading}
       >
-        {loading ? <ActivityIndicator color="#fff" /> : <Text style={{ color: 'white', fontWeight: 'bold', fontSize: 16 }}>Sign In</Text>}
+        {loading ? <ActivityIndicator color="#fff" /> : <Text className="text-white font-bold text-base">Sign In</Text>}
       </TouchableOpacity>
       <Link href={"/screens/RegisterScreen"}>
-        <Text style={{ color: '#e50914' }}>Dont have an account? Sign Up</Text>
+        <Text className="text-[#e50914]">Don&apos;t have an account? Sign Up</Text>
       </Link>
     </View>
   );
